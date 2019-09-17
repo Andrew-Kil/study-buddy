@@ -1,6 +1,6 @@
 import React from "react";
 
-import TimerContainer from "./containers/TimerContainer/TimerContainer";
+import TimerContainer from "./components/Timer/TimerContainer";
 
 function App() {
   return (
