@@ -4,25 +4,25 @@ import { Timer } from "./Timer";
 
 export default class TimerContainer extends Component {
   state = {
+    isStarted: false,
+    isTicking: true,
     minutes: 25,
     seconds: 0
   };
 
-  componentDidMount() {
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  timer() {
     this.timer = setInterval(() => {
       this.checkTime(this.state.minutes, this.state.seconds);
       this.tick();
     }, 1000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   tick() {
-    this.setState({
-      seconds: this.state.seconds - 1
-    });
+    this.setState({ seconds: this.state.seconds - 1 });
   }
 
   checkTime(min, sec) {
@@ -37,9 +37,55 @@ export default class TimerContainer extends Component {
     }
   }
 
+  startTimer = e => {
+    this.setState({ isStarted: true });
+    this.timer = setInterval(() => {
+      this.checkTime(this.state.minutes, this.state.seconds);
+      this.tick();
+    }, 1000);
+  };
+
+  pauseTimer = e => {
+    clearInterval(this.timer);
+    this.setState({ isTicking: false });
+  };
+
+  playTimer = e => {
+    this.setState({ isTicking: true });
+    this.timer = setInterval(() => {
+      this.checkTime(this.state.minutes, this.state.seconds);
+      this.tick();
+    }, 1000);
+  };
+
+  restartTimer = e => {
+    clearInterval(this.timer);
+    this.setState({
+      isTicking: true,
+      minutes: 25,
+      seconds: 0
+    });
+    this.timer = setInterval(() => {
+      this.checkTime(this.state.minutes, this.state.seconds);
+      this.tick();
+    }, 1000);
+  };
+
   render() {
-    return (
-      <Timer minutes={this.state.minutes} seconds={this.state.seconds}></Timer>
+    const { isStarted } = this.state;
+    return isStarted ? (
+      <>
+        <Timer
+          minutes={this.state.minutes}
+          seconds={this.state.seconds}></Timer>
+        <button
+          onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
+          {this.state.isTicking ? "pause" : "play"}
+        </button>
+        <button onClick={this.restartTimer}>reset</button>
+      </>
+    ) : (
+      <button onClick={this.startTimer}>start</button>
     );
   }
 }
