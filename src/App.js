@@ -1,12 +1,14 @@
 import React from "react";
 
 import TimerContainer from "./components/Timer/TimerContainer";
+import ToDoContainer from "./components/ToDo/ToDoContainer";
 
 function App() {
   return (
     <>
       <h1>Pomodoro Timer</h1>
       <TimerContainer></TimerContainer>
+      <ToDoContainer></ToDoContainer>
     </>
   );
 }

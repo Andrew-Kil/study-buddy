@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { Timer } from "./Timer";
 
+import "./Timer.css";
+
 export default class TimerContainer extends Component {
   state = {
     isStarted: false,
@@ -79,13 +81,22 @@ export default class TimerContainer extends Component {
           minutes={this.state.minutes}
           seconds={this.state.seconds}></Timer>
         <button
+          className="pause-play-button"
           onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
-          {this.state.isTicking ? "pause" : "play"}
+          {this.state.isTicking ? (
+            <i class="fas fa-pause-circle fa-3x"></i>
+          ) : (
+            <i class="fas fa-play-circle fa-3x"></i>
+          )}
         </button>
-        <button onClick={this.restartTimer}>reset</button>
+        <button className="restart-button" onClick={this.restartTimer}>
+          <i class="fas fa-undo-alt fa-3x"></i>
+        </button>
       </>
     ) : (
-      <button onClick={this.startTimer}>start</button>
+      <button className="start-button" onClick={this.startTimer}>
+        <i class="fas fa-hourglass-start fa-3x"></i>
+      </button>
     );
   }
 }
