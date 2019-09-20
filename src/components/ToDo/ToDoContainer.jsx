@@ -22,6 +22,11 @@ export default class ToDoContainer extends Component {
     });
   };
 
+  deleteToDo = task => {
+    const filteredTodos = this.state.todos.filter(todo => task !== todo);
+    this.setState({ todos: filteredTodos });
+  };
+
   render() {
     return (
       <>
@@ -33,7 +38,9 @@ export default class ToDoContainer extends Component {
             value={this.state.todo}
             onChange={this.handleChange}></input>
         </form>
-        <ToDo todos={this.state.todos}></ToDo>
+        <ToDo
+          todos={this.state.todos}
+          deleteToDo={this.deleteToDo.bind(this)}></ToDo>
       </>
     );
   }
