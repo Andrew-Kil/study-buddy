@@ -90,12 +90,12 @@ export default class TimerContainer extends Component {
           )}
         </button>
         <button className="restart-button" onClick={this.restartTimer}>
-          <i class="fas fa-undo-alt fa-3x"></i>
+          <i className="fas fa-undo-alt fa-3x"></i>
         </button>
       </>
     ) : (
       <button className="start-button" onClick={this.startTimer}>
-        <i class="fas fa-hourglass-start fa-3x"></i>
+        <i className="fas fa-hourglass-start fa-3x"></i>
       </button>
     );
   }
