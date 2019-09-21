@@ -11,7 +11,9 @@ export const Tasks = props => {
               <div key={idx}>
                 <li>
                   {task}
-                  <button onClick={props.deleteTask.bind(this, task)}>X</button>
+                  <i
+                    className="fas fa-trash-alt"
+                    onClick={props.deleteTask(task)}></i>
                 </li>
               </div>
             );

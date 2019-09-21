@@ -1,47 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { Tasks } from "./Tasks.jsx";
 
 import "./Tasks.scss";
 
-export default class TasksContainer extends Component {
-  state = {
-    task: "",
-    tasks: []
+export const TasksContainer = () => {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const updateTask = e => {
+    setTask(e.target.value);
   };
 
-  handleChange = e => {
-    this.setState({ task: e.target.value });
+  const updateTasks = task => {
+    setTasks(tasks => [...tasks, task]);
   };
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
-      task: ""
-    });
+    updateTasks(task);
+    setTask("");
   };
 
-  deleteTask = item => {
-    const filteredTasks = this.state.tasks.filter(task => task !== item);
-    this.setState({ tasks: filteredTasks });
+  const deleteTask = item => e => {
+    const filteredTasks = tasks.filter(task => task !== item);
+    setTasks(filteredTasks);
   };
 
-  render() {
-    return (
-      <>
-        <form onSubmit={e => this.handleSubmit(e)}>
-          <input
-            type="text"
-            placeholder="Add task"
-            className="input-add-task"
-            value={this.state.task}
-            onChange={this.handleChange}></input>
-        </form>
-        <Tasks
-          tasks={this.state.tasks}
-          deleteTask={this.deleteTask.bind(this)}></Tasks>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <form onSubmit={e => handleSubmit(e)}>
+        <input
+          type="text"
+          placeholder="Add task"
+          className="input-add-task"
+          value={task}
+          onChange={e => updateTask(e)}></input>
+      </form>
+      <Tasks tasks={tasks} deleteTask={deleteTask}></Tasks>
+    </>
+  );
+};

@@ -12,15 +12,13 @@ ul {
   li {
     margin: 2.5%;
 
-    button {
+    i {
       margin-left: 10px;
-      border: 2px solid black;
       border-radius: 5px;
       font-weight: 700;
 
       &:hover {
         cursor: pointer;
-        border: 2px outset red;
         color: red;
       }
     }
