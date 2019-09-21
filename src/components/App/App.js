@@ -1,11 +1,11 @@
 import React from "react";
 
 import TimerContainer from "../Timer/TimerContainer";
-import TasksContainer from "../Tasks/TasksContainer";
+import { TasksContainer } from "../Tasks/TasksContainer";
 
 import "./App.scss";
 
-function App() {
+const App = () => {
   return (
     <div className="root-div">
       <h1>Study Buddy</h1>
@@ -13,6 +13,6 @@ function App() {
       <TasksContainer></TasksContainer>
     </div>
   );
-}
+};
 
 export default App;
