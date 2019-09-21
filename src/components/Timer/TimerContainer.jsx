@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Timer } from "./Timer";
 
-import "./Timer.css";
+import "./Timer.scss";
 
 export default class TimerContainer extends Component {
   state = {

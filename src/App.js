@@ -3,6 +3,8 @@ import React from "react";
 import TimerContainer from "./components/Timer/TimerContainer";
 import ToDoContainer from "./components/ToDo/ToDoContainer";
 
+import "./App.scss";
+
 function App() {
   return (
     <>

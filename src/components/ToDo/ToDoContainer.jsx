@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { ToDo } from "./ToDo.jsx";
 
-import "./ToDo.css";
+import "./ToDo.scss";
 
 export default class ToDoContainer extends Component {
   state = {
