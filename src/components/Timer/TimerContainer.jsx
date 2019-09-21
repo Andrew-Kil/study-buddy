@@ -12,6 +12,14 @@ export default class TimerContainer extends Component {
     seconds: 0
   };
 
+  componentDidUpdate() {
+    document.title = `(${
+      this.state.minutes < 10 ? 0 + this.state.minutes : this.state.minutes
+    }:${
+      this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds
+    }) - Study Buddy`;
+  }
+
   componentWillUnmount() {
     clearInterval(this.timer);
   }
