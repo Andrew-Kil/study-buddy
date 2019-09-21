@@ -84,18 +84,18 @@ export default class TimerContainer extends Component {
           className="pause-play-button"
           onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
           {this.state.isTicking ? (
-            <i class="fas fa-pause-circle fa-3x"></i>
+            <i className="fas fa-pause-circle fa-3x"></i>
           ) : (
-            <i class="fas fa-play-circle fa-3x"></i>
+            <i className="fas fa-play-circle fa-3x"></i>
           )}
         </button>
         <button className="restart-button" onClick={this.restartTimer}>
-          <i class="fas fa-undo-alt fa-3x"></i>
+          <i className="fas fa-undo-alt fa-3x"></i>
         </button>
       </>
     ) : (
       <button className="start-button" onClick={this.startTimer}>
-        <i class="fas fa-hourglass-start fa-3x"></i>
+        <i className="fas fa-hourglass-start fa-3x"></i>
       </button>
     );
   }
