@@ -1,17 +1,17 @@
 import React from "react";
 
 import TimerContainer from "./components/Timer/TimerContainer";
-import ToDoContainer from "./components/ToDo/ToDoContainer";
+import TasksContainer from "./components/Tasks/TasksContainer";
 
 import "./App.scss";
 
 function App() {
   return (
-    <>
-      <h1>Pomodoro Timer</h1>
+    <div className="root-div">
+      <h1>Study Buddy</h1>
       <TimerContainer></TimerContainer>
-      <ToDoContainer></ToDoContainer>
-    </>
+      <TasksContainer></TasksContainer>
+    </div>
   );
 }
 

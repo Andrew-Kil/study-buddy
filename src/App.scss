@@ -1,6 +1,40 @@
-$primary-color: orange;
-$secondary-color: lightblue;
+$primary-color: #1985a1;
+$secondary-color: #dcdcdd;
+$tertiary-color: #46494c;
+
+* {
+  color: $tertiary-color;
+}
+
+html,
+body {
+  height: 100vh;
+}
 
 body {
   background-color: $primary-color;
+}
+
+h1 {
+  color: black;
+}
+
+.root-div {
+  background-color: $secondary-color;
+  border-radius: 25px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  width: 50%;
+  margin: 5% auto 0 auto;
+
+  .start-button:hover {
+    cursor: pointer;
+    background-color: $primary-color;
+  }
+
+  input {
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding-left: 1%;
+  }
 }

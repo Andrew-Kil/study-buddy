@@ -80,18 +80,20 @@ export default class TimerContainer extends Component {
         <Timer
           minutes={this.state.minutes}
           seconds={this.state.seconds}></Timer>
-        <button
-          className="pause-play-button"
-          onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
-          {this.state.isTicking ? (
-            <i className="fas fa-pause-circle fa-3x"></i>
-          ) : (
-            <i className="fas fa-play-circle fa-3x"></i>
-          )}
-        </button>
-        <button className="restart-button" onClick={this.restartTimer}>
-          <i className="fas fa-undo-alt fa-3x"></i>
-        </button>
+        <div className="buttons-container">
+          <button
+            className="pause-play-button"
+            onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
+            {this.state.isTicking ? (
+              <i className="fas fa-pause-circle fa-3x"></i>
+            ) : (
+              <i className="fas fa-play-circle fa-3x"></i>
+            )}
+          </button>
+          <button className="restart-button" onClick={this.restartTimer}>
+            <i className="fas fa-undo-alt fa-3x"></i>
+          </button>
+        </div>
       </>
     ) : (
       <button className="start-button" onClick={this.startTimer}>
