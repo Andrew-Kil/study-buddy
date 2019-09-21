@@ -11,9 +11,15 @@ ul {
 
   li {
     margin: 2.5%;
+    list-style-type: none;
+
+    input {
+      margin-right: 20px;
+      transform: scale(2, 2);
+    }
 
     i {
-      margin-left: 10px;
+      margin-left: 20px;
       border-radius: 5px;
       font-weight: 700;
 

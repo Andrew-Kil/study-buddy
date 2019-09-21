@@ -10,6 +10,7 @@ export const Tasks = props => {
             return (
               <div key={idx}>
                 <li>
+                  <input type="checkbox" />
                   {task}
                   <i
                     className="fas fa-trash-alt"
