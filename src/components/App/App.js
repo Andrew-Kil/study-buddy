@@ -1,7 +1,7 @@
 import React from "react";
 
-import TimerContainer from "./components/Timer/TimerContainer";
-import TasksContainer from "./components/Tasks/TasksContainer";
+import TimerContainer from "../Timer/TimerContainer";
+import TasksContainer from "../Tasks/TasksContainer";
 
 import "./App.scss";
 
