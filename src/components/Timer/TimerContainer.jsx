@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { Timer } from "./Timer";
 
+import alertSound from "../../assets/alert.mp3";
+
 import "./Timer.scss";
 
 export default class TimerContainer extends Component {
@@ -11,6 +13,8 @@ export default class TimerContainer extends Component {
     minutes: 25,
     seconds: 0
   };
+
+  audio = new Audio(alertSound);
 
   componentDidUpdate() {
     document.title = `(${
@@ -24,7 +28,7 @@ export default class TimerContainer extends Component {
     clearInterval(this.timer);
   }
 
-  timer() {
+  playTimer() {
     this.timer = setInterval(() => {
       this.checkTime(this.state.minutes, this.state.seconds);
       this.tick();
@@ -38,6 +42,7 @@ export default class TimerContainer extends Component {
   checkTime(min, sec) {
     if (min === 0 && sec === 1) {
       clearInterval(this.timer);
+      this.playAlert();
     }
     if (min > 0 && sec === 0) {
       this.setState({
@@ -47,12 +52,18 @@ export default class TimerContainer extends Component {
     }
   }
 
+  playAlert() {
+    const startAlert = setInterval(() => {
+      this.audio.play();
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(startAlert);
+    }, 3000);
+  }
+
   startTimer = e => {
     this.setState({ isStarted: true });
-    this.timer = setInterval(() => {
-      this.checkTime(this.state.minutes, this.state.seconds);
-      this.tick();
-    }, 1000);
+    this.playTimer();
   };
 
   pauseTimer = e => {
@@ -60,12 +71,9 @@ export default class TimerContainer extends Component {
     this.setState({ isTicking: false });
   };
 
-  playTimer = e => {
+  resumeTimer = e => {
     this.setState({ isTicking: true });
-    this.timer = setInterval(() => {
-      this.checkTime(this.state.minutes, this.state.seconds);
-      this.tick();
-    }, 1000);
+    this.playTimer();
   };
 
   restartTimer = e => {
@@ -75,10 +83,7 @@ export default class TimerContainer extends Component {
       minutes: 25,
       seconds: 0
     });
-    this.timer = setInterval(() => {
-      this.checkTime(this.state.minutes, this.state.seconds);
-      this.tick();
-    }, 1000);
+    this.playTimer();
   };
 
   render() {
@@ -91,7 +96,7 @@ export default class TimerContainer extends Component {
         <div className="buttons-container">
           <button
             className="pause-play-button"
-            onClick={this.state.isTicking ? this.pauseTimer : this.playTimer}>
+            onClick={this.state.isTicking ? this.pauseTimer : this.resumeTimer}>
             {this.state.isTicking ? (
               <i className="fas fa-pause-circle fa-3x"></i>
             ) : (
