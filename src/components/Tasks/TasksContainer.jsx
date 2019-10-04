@@ -8,15 +8,27 @@ export default class TasksContainer extends Component {
     tasks: []
   };
 
+  componentDidMount() {
+    this.setState({
+      tasks: JSON.parse(localStorage.getItem("myTasks")) || []
+    });
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.updateTasks(this.state.task);
     this.setState({ task: "" });
   };
 
-  updateTask = e => this.setState({ task: e.target.value });
+  updateTask = e => {
+    this.setState({ task: e.target.value });
+  };
 
-  updateTasks = task => this.setState({ tasks: [...this.state.tasks, task] });
+  updateTasks = task => {
+    this.setState({ tasks: [...this.state.tasks, task] }, () =>
+      localStorage.setItem("myTasks", JSON.stringify(this.state.tasks))
+    );
+  };
 
   deleteTask = item => e => {
     const filteredTasks = this.state.tasks.filter(task => task !== item);
