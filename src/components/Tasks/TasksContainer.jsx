@@ -30,9 +30,10 @@ export default class TasksContainer extends Component {
     );
   };
 
-  deleteTask = item => e => {
+  deleteTask = item => () => {
     const filteredTasks = this.state.tasks.filter(task => task !== item);
     this.setState({ tasks: filteredTasks });
+    localStorage.setItem("myTasks", JSON.stringify(filteredTasks));
   };
 
   render() {
