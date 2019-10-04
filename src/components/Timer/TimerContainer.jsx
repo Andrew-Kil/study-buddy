@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-
 import { Timer } from "./Timer";
-
 import alertSound from "../../assets/alert.mp3";
-
 import "./Timer.scss";
 
 export default class TimerContainer extends Component {
   state = {
-    isStarted: false,
-    isTicking: true,
+    isTicking: false,
     minutes: 25,
     seconds: 0
   };
@@ -61,11 +57,6 @@ export default class TimerContainer extends Component {
     }, 3000);
   }
 
-  startTimer = e => {
-    this.setState({ isStarted: true });
-    this.playTimer();
-  };
-
   pauseTimer = e => {
     clearInterval(this.timer);
     this.setState({ isTicking: false });
@@ -87,14 +78,13 @@ export default class TimerContainer extends Component {
   };
 
   render() {
-    const { isStarted } = this.state;
-    return isStarted ? (
+    return (
       <>
         <Timer
           minutes={this.state.minutes}
           seconds={this.state.seconds}></Timer>
         <div className="buttons-container">
-          <button
+          <div
             className="pause-play-button"
             onClick={this.state.isTicking ? this.pauseTimer : this.resumeTimer}>
             {this.state.isTicking ? (
@@ -102,16 +92,12 @@ export default class TimerContainer extends Component {
             ) : (
               <i className="fas fa-play-circle fa-3x"></i>
             )}
-          </button>
-          <button className="restart-button" onClick={this.restartTimer}>
+          </div>
+          <div className="restart-button" onClick={this.restartTimer}>
             <i className="fas fa-undo-alt fa-3x"></i>
-          </button>
+          </div>
         </div>
       </>
-    ) : (
-      <button className="start-button" onClick={this.startTimer}>
-        <i className="fas fa-hourglass-start fa-3x"></i>
-      </button>
     );
   }
 }
