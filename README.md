@@ -1,6 +1,6 @@
 # To Do List:
 
-- [ ] Change reset button behavior
+- [x] Change reset button behavior
   - Should not automatically start counting down unless play is pressed
     - Improves user experience
 - [ ] Add options for customizing how much time one pomodoro should be
@@ -9,6 +9,6 @@
     - Input Field: Enter valid (not negative, within a certain range) #
 - [ ] Add short break countdown timer
 - [ ] Add long break countdown timer
-- [ ] Track # of pomodoros completed
+- [x] Track # of pomodoros completed
 - [ ] Track # of breaks completed
   - Both short and long breaks
