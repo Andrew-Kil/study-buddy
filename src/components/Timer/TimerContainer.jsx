@@ -70,11 +70,10 @@ export default class TimerContainer extends Component {
   restartTimer = e => {
     clearInterval(this.timer);
     this.setState({
-      isTicking: true,
+      isTicking: false,
       minutes: 25,
       seconds: 0
     });
-    this.playTimer();
   };
 
   render() {
