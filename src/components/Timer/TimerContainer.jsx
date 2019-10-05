@@ -7,7 +7,8 @@ export default class TimerContainer extends Component {
   state = {
     isTicking: false,
     minutes: 25,
-    seconds: 0
+    seconds: 0,
+    pomodorosCompleted: JSON.parse(localStorage.getItem("myPomodoros")) || 0
   };
 
   audio = new Audio(alertSound);
@@ -39,6 +40,14 @@ export default class TimerContainer extends Component {
     if (min === 0 && sec === 1) {
       clearInterval(this.timer);
       this.playAlert();
+      this.setState({
+        pomodorosCompleted: this.state.pomodorosCompleted + 1,
+        isTicking: false
+      });
+      localStorage.setItem(
+        "myPomodoros",
+        JSON.stringify(this.state.pomodorosCompleted)
+      );
     }
     if (min > 0 && sec === 0) {
       this.setState({
@@ -96,6 +105,7 @@ export default class TimerContainer extends Component {
             <i className="fas fa-undo-alt fa-3x"></i>
           </div>
         </div>
+        <h4>Pomodoros Completed: {this.state.pomodorosCompleted}</h4>
       </>
     );
   }
