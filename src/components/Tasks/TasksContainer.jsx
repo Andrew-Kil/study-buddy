@@ -37,8 +37,8 @@ export default class TasksContainer extends Component {
     localStorage.setItem("myTasks", JSON.stringify(filteredTasks));
   };
 
-  completeTask = task => () => {
-    this.setState({
+  completeTask = task => async () => {
+    await this.setState({
       tasks: this.state.tasks.map(_task => {
         if (task === _task) {
           return {
@@ -50,6 +50,7 @@ export default class TasksContainer extends Component {
         }
       })
     });
+    localStorage.setItem("myTasks", JSON.stringify(this.state.tasks));
   };
 
   render() {

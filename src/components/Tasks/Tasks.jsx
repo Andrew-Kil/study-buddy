@@ -10,7 +10,11 @@ export const Tasks = props => {
             return (
               <div key={idx}>
                 <li>
-                  <input type="checkbox" onChange={props.completeTask(task)} />
+                  <input
+                    type="checkbox"
+                    onChange={props.completeTask(task)}
+                    defaultChecked={task.completed}
+                  />
                   <span className={task.completed ? "completed" : ""}>
                     {task.text}
                   </span>
