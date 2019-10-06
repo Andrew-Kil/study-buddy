@@ -21,13 +21,14 @@ export default class TasksContainer extends Component {
   };
 
   updateTask = e => {
-    this.setState({ task: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  updateTasks = task => {
-    this.setState({ tasks: [...this.state.tasks, task] }, () =>
-      localStorage.setItem("myTasks", JSON.stringify(this.state.tasks))
-    );
+  updateTasks = async task => {
+    await this.setState({
+      tasks: [...this.state.tasks, { text: task, completed: false }]
+    });
+    localStorage.setItem("myTasks", JSON.stringify(this.state.tasks));
   };
 
   deleteTask = item => () => {
@@ -36,18 +37,37 @@ export default class TasksContainer extends Component {
     localStorage.setItem("myTasks", JSON.stringify(filteredTasks));
   };
 
+  completeTask = task => () => {
+    this.setState({
+      tasks: this.state.tasks.map(_task => {
+        if (task === _task) {
+          return {
+            text: task.text,
+            completed: !task.completed
+          };
+        } else {
+          return _task;
+        }
+      })
+    });
+  };
+
   render() {
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
           <input
+            name="task"
             type="text"
-            placeholder="Add task"
             className="input-add-task"
             value={this.state.task}
             onChange={e => this.updateTask(e)}></input>
+          <button type="submit">Add Task</button>
         </form>
-        <Tasks tasks={this.state.tasks} deleteTask={this.deleteTask}></Tasks>
+        <Tasks
+          tasks={this.state.tasks}
+          deleteTask={this.deleteTask}
+          completeTask={this.completeTask}></Tasks>
       </div>
     );
   }
