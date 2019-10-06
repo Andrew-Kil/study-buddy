@@ -24,10 +24,9 @@ export default class TasksContainer extends Component {
     this.setState({ task: e.target.value });
   };
 
-  updateTasks = task => {
-    this.setState({ tasks: [...this.state.tasks, task] }, () =>
-      localStorage.setItem("myTasks", JSON.stringify(this.state.tasks))
-    );
+  updateTasks = async task => {
+    await this.setState({ tasks: [...this.state.tasks, task] });
+    localStorage.setItem("myTasks", JSON.stringify(this.state.tasks));
   };
 
   deleteTask = item => () => {
