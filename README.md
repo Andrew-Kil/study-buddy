@@ -12,3 +12,5 @@
 - [x] Track # of pomodoros completed
 - [ ] Track # of breaks completed
   - Both short and long breaks
+- [ ] Track total time completed
+- [ ] Incorporate Redux
