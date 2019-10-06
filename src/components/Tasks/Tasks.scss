@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
 h3 {
   text-decoration: underline;
 }
@@ -15,7 +19,6 @@ ul {
 
     input {
       margin-right: 20px;
-      transform: scale(2, 2);
     }
 
     i {

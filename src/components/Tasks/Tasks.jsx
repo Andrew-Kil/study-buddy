@@ -10,8 +10,10 @@ export const Tasks = props => {
             return (
               <div key={idx}>
                 <li>
-                  <input type="checkbox" />
-                  {task}
+                  <input type="checkbox" onChange={props.completeTask(task)} />
+                  <span className={task.completed ? "completed" : ""}>
+                    {task.text}
+                  </span>
                   <i
                     className="fas fa-trash-alt"
                     onClick={props.deleteTask(task)}></i>
