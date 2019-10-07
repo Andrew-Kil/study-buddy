@@ -55,7 +55,7 @@ export default class TasksContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="tasks-container">
         <form onSubmit={e => this.handleSubmit(e)}>
           <div>
             <input
