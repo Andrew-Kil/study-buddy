@@ -24,7 +24,7 @@ body {
   transition: 0.3s;
   background-color: $secondary-color;
   border-radius: 10px;
-  padding-bottom: 50px;
+  padding-bottom: 2.5%;
   text-align: center;
   width: 80%;
   margin: 2.5% auto 0 auto;
@@ -34,8 +34,9 @@ body {
   }
 
   input {
-    border: 2px solid gray;
-    border-radius: 5px;
+    border: 2px solid $tertiary-color;
+    border-radius: 10px;
     padding-left: 1%;
+    font-size: 18px;
   }
 }
