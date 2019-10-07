@@ -39,7 +39,7 @@ form {
 }
 
 .tasks-component-container {
-  background-color: white;
+  background-color: $secondary-color;
   width: 80%;
   margin: auto;
   margin-top: 2.5%;
@@ -50,7 +50,8 @@ form {
     list-style-position: inside;
 
     li {
-      border: 1px solid $tertiary-color;
+      background-color: white;
+      border: 2px solid $tertiary-color;
       border-radius: 5px;
       padding: 2.5%;
       margin: 2.5%;
