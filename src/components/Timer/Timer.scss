@@ -8,6 +8,12 @@
   background-color: white;
 }
 
+.timer-container {
+  background-color: $tertiary-color;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 .buttons-container {
   width: 50%;
   margin: 0 auto;
@@ -16,16 +22,25 @@
 
   div:hover {
     cursor: pointer;
-    background-color: $primary-color;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
 h2 {
-  color: $primary-color;
-  background-color: white;
-  border-radius: 25px;
-  width: 75%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   margin: 0 auto 5% auto;
   padding: 2.5%;
-  font-size: 48px;
+  font-size: 80px;
+
+  div {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+  }
+}
+
+h4 {
+  padding-bottom: 5%;
 }

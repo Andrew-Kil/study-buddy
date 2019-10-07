@@ -87,7 +87,7 @@ export default class TimerContainer extends Component {
 
   render() {
     return (
-      <>
+      <div className="timer-container">
         <Timer
           minutes={this.state.minutes}
           seconds={this.state.seconds}></Timer>
@@ -106,7 +106,7 @@ export default class TimerContainer extends Component {
           </div>
         </div>
         <h4>Pomodoros Completed: {this.state.pomodorosCompleted}</h4>
-      </>
+      </div>
     );
   }
 }
