@@ -3,7 +3,7 @@ import React from "react";
 export const Tasks = props => {
   return (
     <div>
-      <h3>Tasks</h3>
+      <h1>Tasks List</h1>
       <ul>
         {props.tasks.length ? (
           props.tasks.map((task, idx) => {

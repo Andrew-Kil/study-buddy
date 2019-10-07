@@ -57,18 +57,23 @@ export default class TasksContainer extends Component {
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
-          <input
-            name="task"
-            type="text"
-            className="input-add-task"
-            value={this.state.task}
-            onChange={e => this.updateTask(e)}></input>
-          <button type="submit">Add Task</button>
+          <div>
+            <input
+              name="task"
+              type="text"
+              className="input-add-task"
+              value={this.state.task}
+              onChange={e => this.updateTask(e)}></input>
+            <br></br>
+            <button type="submit">Add Task</button>
+          </div>
         </form>
-        <Tasks
-          tasks={this.state.tasks}
-          deleteTask={this.deleteTask}
-          completeTask={this.completeTask}></Tasks>
+        <div className="tasks-component-container">
+          <Tasks
+            tasks={this.state.tasks}
+            deleteTask={this.deleteTask}
+            completeTask={this.completeTask}></Tasks>
+        </div>
       </div>
     );
   }

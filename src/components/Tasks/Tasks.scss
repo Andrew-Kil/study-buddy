@@ -1,3 +1,5 @@
+@import "../App/App.scss";
+
 .input-add-task {
   margin-top: 20px;
 }
@@ -10,25 +12,75 @@ h3 {
   text-decoration: underline;
 }
 
-ul {
-  list-style-position: inside;
-
-  li {
-    margin: 2.5%;
-    list-style-type: none;
-
+form {
+  div {
     input {
-      margin-right: 20px;
+      width: 250px;
+      height: 50px;
     }
 
-    i {
-      margin-left: 20px;
-      border-radius: 5px;
+    button {
+      background-color: $tertiary-color;
+      color: black;
       font-weight: 700;
+      width: 100px;
+      height: 50px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 18px;
 
       &:hover {
         cursor: pointer;
-        color: red;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+.tasks-component-container {
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  margin-top: 2.5%;
+  padding: 1%;
+  border-radius: 10px;
+
+  ul {
+    list-style-position: inside;
+
+    li {
+      border: 1px solid $tertiary-color;
+      border-radius: 10px;
+      padding: 2.5%;
+      margin: 2.5%;
+      list-style-type: none;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+
+      &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      input:hover {
+        cursor: pointer;
+      }
+
+      span {
+        font-size: 18px;
+      }
+
+      i {
+        border-radius: 5px;
+        font-weight: 700;
+
+        &:hover {
+          cursor: pointer;
+          color: red;
+          position: relative;
+          top: -1px;
+        }
       }
     }
   }

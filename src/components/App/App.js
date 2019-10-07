@@ -6,7 +6,6 @@ import "./App.scss";
 const App = () => {
   return (
     <div className="root-div">
-      <h1>Study Buddy</h1>
       <TimerContainer></TimerContainer>
       <TasksContainer></TasksContainer>
     </div>
