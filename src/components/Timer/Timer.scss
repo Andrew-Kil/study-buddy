@@ -12,9 +12,29 @@
   background-color: $tertiary-color;
 }
 
-.buttons-container {
+.options-buttons-container {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 5%;
+}
+
+.options-buttons {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: 700;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.action-buttons-container {
   width: 25%;
-  margin: 0 auto;
+  margin: auto;
   display: flex;
   justify-content: space-around;
 
