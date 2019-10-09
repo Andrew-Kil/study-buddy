@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Timer } from "./Timer";
 import alertSound from "../../assets/alert.mp3";
+import timerTypes from "./timerTypes";
 import "./Timer.scss";
 
 export default class TimerContainer extends Component {
@@ -17,10 +18,9 @@ export default class TimerContainer extends Component {
   audio = new Audio(alertSound);
 
   componentDidUpdate() {
-    document.title = `${
-      this.state.minutes < 10 ? 0 + this.state.minutes : this.state.minutes
-    }:${
-      this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds
+    const { minutes, seconds } = this.state;
+    document.title = `${minutes < 10 ? 0 + minutes : minutes}:${
+      seconds < 10 ? "0" + seconds : seconds
     } - Study Buddy`;
   }
 
@@ -33,23 +33,19 @@ export default class TimerContainer extends Component {
   }
 
   checkTime(min, sec) {
+    const { isPomodoro, pomodorosCompleted, minutes } = this.state;
     if (min === 0 && sec === 1) {
       clearInterval(this.timer);
       this.playAlert();
       this.setState({ isTicking: false });
-      if (this.state.isPomodoro) {
-        this.setState({
-          pomodorosCompleted: this.state.pomodorosCompleted + 1
-        });
-        localStorage.setItem(
-          "myPomodoros",
-          JSON.stringify(this.state.pomodorosCompleted)
-        );
+      if (isPomodoro) {
+        this.setState({ pomodorosCompleted: pomodorosCompleted + 1 });
+        localStorage.setItem("myPomodoros", JSON.stringify(pomodorosCompleted));
       }
     }
     if (min > 0 && sec === 0) {
       this.setState({
-        minutes: this.state.minutes - 1,
+        minutes: minutes - 1,
         seconds: 60
       });
     }
@@ -65,8 +61,9 @@ export default class TimerContainer extends Component {
   }
 
   playTimer() {
+    const { minutes, seconds } = this.state;
     this.timer = setInterval(() => {
-      this.checkTime(this.state.minutes, this.state.seconds);
+      this.checkTime(minutes, seconds);
       this.tick();
     }, 1000);
   }
@@ -81,56 +78,28 @@ export default class TimerContainer extends Component {
     this.playTimer();
   };
 
+  getNewMinutes = () => {
+    const { isLongBreak, isShortBreak, isPomodoro } = this.state;
+    return isPomodoro ? 25 : isLongBreak ? 15 : isShortBreak ? 5 : 0;
+  };
+
   restartTimer = e => {
     clearInterval(this.timer);
-    this.setState({ isTicking: false });
-    if (this.state.isPomodoro) {
-      this.setState({
-        minutes: 25,
-        seconds: 0
-      });
-    }
-    if (this.state.isShortBreak) {
-      this.setState({
-        minutes: 5,
-        seconds: 0
-      });
-    }
-    if (this.state.isLongBreak) {
-      this.setState({
-        minutes: 15,
-        seconds: 0
-      });
-    }
+    this.setState({
+      isTicking: false,
+      minutes: this.getNewMinutes(),
+      seconds: 0
+    });
   };
 
   changeTimer = (time, type) => {
     this.pauseTimer();
-    if (type === "pomodoro") {
-      this.setState({
-        isPomodoro: true,
-        isShortBreak: false,
-        isLongBreak: false
-      });
-    }
-    if (type === "shortBreak") {
-      this.setState({
-        isPomodoro: false,
-        isShortBreak: true,
-        isLongBreak: false
-      });
-    }
-    if (type === "longBreak") {
-      this.setState({
-        isPomodoro: false,
-        isShortBreak: false,
-        isLongBreak: true
-      });
-    }
-    this.setState({ minutes: time, seconds: 0 });
+    const newState = timerTypes[type];
+    this.setState({ ...newState, minutes: time, seconds: 0 });
   };
 
   render() {
+    const { minutes, seconds, isTicking, pomodorosCompleted } = this.state;
     return (
       <div className="timer-container">
         <div className="options-buttons-container">
@@ -150,14 +119,12 @@ export default class TimerContainer extends Component {
             Long Break
           </div>
         </div>
-        <Timer
-          minutes={this.state.minutes}
-          seconds={this.state.seconds}></Timer>
+        <Timer minutes={minutes} seconds={seconds}></Timer>
         <div className="action-buttons-container">
           <div
             className="pause-play-button"
-            onClick={this.state.isTicking ? this.pauseTimer : this.resumeTimer}>
-            {this.state.isTicking ? (
+            onClick={isTicking ? this.pauseTimer : this.resumeTimer}>
+            {isTicking ? (
               <i className="fas fa-pause-circle fa-3x"></i>
             ) : (
               <i className="fas fa-play-circle fa-3x"></i>
@@ -167,7 +134,7 @@ export default class TimerContainer extends Component {
             <i className="fas fa-undo-alt fa-3x"></i>
           </div>
         </div>
-        <h4>Pomodoros Completed: {this.state.pomodorosCompleted}</h4>
+        <h4>Pomodoros Completed: {pomodorosCompleted}</h4>
       </div>
     );
   }
