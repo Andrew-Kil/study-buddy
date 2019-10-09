@@ -32,18 +32,18 @@ export default class TimerContainer extends Component {
     this.setState({ seconds: this.state.seconds - 1 });
   }
 
-  checkTime(min, sec) {
-    const { isPomodoro, pomodorosCompleted, minutes } = this.state;
-    if (min === 0 && sec === 1) {
+  checkTime() {
+    const { isPomodoro, pomodorosCompleted, minutes, seconds } = this.state;
+    if (minutes === 0 && seconds === 1) {
       clearInterval(this.timer);
       this.playAlert();
-      this.setState({ isTicking: false });
       if (isPomodoro) {
         this.setState({ pomodorosCompleted: pomodorosCompleted + 1 });
         localStorage.setItem("myPomodoros", JSON.stringify(pomodorosCompleted));
       }
+      this.setState({ isTicking: false });
     }
-    if (min > 0 && sec === 0) {
+    if (minutes > 0 && seconds === 0) {
       this.setState({
         minutes: minutes - 1,
         seconds: 60
@@ -61,9 +61,8 @@ export default class TimerContainer extends Component {
   }
 
   playTimer() {
-    const { minutes, seconds } = this.state;
     this.timer = setInterval(() => {
-      this.checkTime(minutes, seconds);
+      this.checkTime();
       this.tick();
     }, 1000);
   }
