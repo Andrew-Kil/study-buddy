@@ -15,3 +15,4 @@
   - Both short and long breaks
 - [ ] Track total time completed
 - [ ] Incorporate Redux
+- [ ] Set up authentication
